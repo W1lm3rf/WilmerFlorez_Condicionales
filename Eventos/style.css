@@ -1,0 +1,225 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+
+body{
+    background-color: rgb(232, 232, 231);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section{
+    margin-top: 25px;
+    display: flex;
+    
+}
+
+#EjerciciosUnoDos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+   
+}
+
+#CalculadoraIMC{
+    padding: 10px;
+    height: 20vw;
+    width: 16vw;
+    background-color: rgb(120, 201, 255);
+    flex-direction: column;
+    justify-content: space-around
+}
+
+#CalculadoraIMC div{
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
+
+#CalculadoraIMC input{
+    border: none;
+    height: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(13, 61, 138);
+}
+
+#CalculadoraIMC input:last-child{
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    
+}
+
+#CalculadoraIMC button{
+    background-color: rgb(255, 131, 22);
+    color: white;
+    font-weight: bold;
+    border: none;
+    height: 30px;
+}
+
+#CalculadoraIMC button:hover{
+    background-color: rgb(174, 85, 7);
+    border-bottom: 2px solid rgb(255, 157, 0);
+    border-top: 2px solid rgb(255, 157, 0);
+}
+
+
+
+
+/* Ejercicio 2 */
+#ConversorDivisa{
+    padding: 10px;
+    height: 20vw;
+    width: 16vw;
+    background-color: rgb(120, 201, 255);
+    flex-direction: column;
+    justify-content: space-around
+}
+
+#ConversorDivisa div{
+    font-size: 14px;
+    background-color: white;
+    
+}
+
+#ConversorDivisa input{
+    border: none;
+    height: 28px;
+    width: 40%;
+    border-right: 2px solid rgb(13, 61, 138);
+}
+
+
+/* Ejercicio3 */
+
+#CreadorNotas{
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250, 248, 244);
+}
+
+#CreadorNotas h3{
+    text-align: center;
+    font-size: 27px;
+}
+
+#contenedorUno{
+    margin-top: 15px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(208, 207, 207);
+}
+
+#contenedorUno div{
+    width: 30%;
+    gap: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+
+#titulo{
+    height: 30px;
+    width: 90%;
+    
+}
+
+#nota{
+    height: 250px;
+    width: 90%;
+}
+
+
+
+#contenedorUno button{
+    height: 30px;
+    width: 200px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+#contenedorUno button:first-child{
+    background-color: rgb(2, 204, 59);
+    border-bottom: 2px solid rgb(0, 91, 26);
+    
+}
+
+#contenedorUno button:last-child{
+    background-color: rgb(255, 119, 0);
+    border-bottom: 2px solid rgb(137, 65, 3);
+}
+
+
+
+
+
+.contenedorNotas{
+    
+    
+    padding: 20px;
+    background-color: white;
+    border: 1px solid rgb(208, 207, 207);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    min-width: 200px;
+    background-color: rgb(120, 201, 255);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+}
+
+.card:hover{
+    border:2px solid rgb(0, 33, 91);
+}
+
+.card h4{
+    font-size: 18px;
+    padding: 5px;
+    border-bottom: 2px solid rgb(0, 53, 91);
+}
+
+.card p{
+    font-family: serif;
+    font-size: 14;
+    font-style: italic;
+    max-width: 250px;
+}
+
+.card button{
+    background-color: rgb(14, 120, 173);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid rgb(4, 25, 36);
+    height: 30px;
+    font-size: 16px;
+}
+
+.card button:hover{
+    border: 2px solid white;
+}
+
+
+
