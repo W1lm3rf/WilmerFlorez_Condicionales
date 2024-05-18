@@ -44,56 +44,75 @@ let notas = [
 let idGlobal = 2;
 
 // Función para pintar las notas en forma de tarjetas
-function pintarNotas() {
+function pintarNotas(notasFiltradas) {
     const contenedorNotas = document.getElementById('contenedorNotas');
     contenedorNotas.innerHTML = '';
 
-    notas.forEach(nota => {
-        const card = document.createElement('div');
-        card.classList.add('card');
+    if (notasFiltradas.length === 0) {
+        const mensaje = document.createElement('p');
+        mensaje.innerText = 'NO HAY NOTAS PARA MOSTRAR';
+        contenedorNotas.appendChild(mensaje);
+    } else {
+        notasFiltradas.forEach(nota => {
+            const card = document.createElement('div');
+            card.classList.add('card');
 
-        const cardTitle = document.createElement('h4');
-        cardTitle.innerText = nota.titulo;
+            const cardTitle = document.createElement('h4');
+            cardTitle.innerText = nota.titulo;
 
-        const cardContent = document.createElement('p');
-        cardContent.innerText = nota.texto;
+            const cardContent = document.createElement('p');
+            cardContent.innerText = nota.texto;
 
-        // Crear el botón de eliminar
-        const deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Eliminar';
-        deleteButton.onclick = function() {
-            borrarNota(nota.id);
-        };
+            // Crear el checkbox para marcar como realizada
+            const checkboxLabel = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = nota.realizada;
+            checkbox.onclick = function() {
+                marcarRealizada(nota.id);
+            };
 
-        card.appendChild(cardTitle);
-        card.appendChild(cardContent);
-        card.appendChild(deleteButton);
+            checkboxLabel.appendChild(checkbox);
+            checkboxLabel.appendChild(document.createTextNode(' Realizada'));
 
-        contenedorNotas.appendChild(card);
-    });
+            // Crear el botón de eliminar
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Eliminar';
+            deleteButton.onclick = function() {
+                borrarNota(nota.id);
+            };
+            card.appendChild(checkbox);
+            card.appendChild(checkboxLabel);
+            card.appendChild(cardTitle);
+            card.appendChild(cardContent);
+            card.appendChild(deleteButton);
+
+            contenedorNotas.appendChild(card);
+        });
+    }
 }
 
 // Función para borrar una nota por ID
 function borrarNota(id) {
     notas = notas.filter(nota => nota.id !== id);
-    pintarNotas();
+    aplicarFiltros();
 }
 
 // Función para guardar una nueva nota
 function guardarNota() {
-    const titulo = document.getElementById('titulo').value;
-    const nota = document.getElementById('nota').value;
+    let titulo = document.getElementById('titulo').value;
+    let nota = document.getElementById('nota').value;
     
     if (titulo && nota) {
         idGlobal++;
-        const nuevaNota = {
+        let nuevaNota = {
             id: idGlobal,
             titulo: titulo,
             texto: nota,
             realizada: false
         };
         notas.push(nuevaNota);
-        pintarNotas();
+        aplicarFiltros();
 
         // Limpiar los inputs
         document.getElementById('titulo').value = '';
@@ -106,8 +125,45 @@ function guardarNota() {
 // Función para resetear todas las notas
 function resetNotas() {
     notas = [];
-    pintarNotas();
+    aplicarFiltros();
+}
+
+// Función para marcar una nota como realizada
+function marcarRealizada(id) {
+    let nota = notas.find(nota => nota.id === id);
+    if (nota) {
+        nota.realizada = !nota.realizada;
+        aplicarFiltros();
+    }
+}
+
+// Función para filtrar por el estado realizada
+function filtrarPorRealizadas(notas) {
+    let filtroRealizadas = document.getElementById('filtroRealizadas').checked;
+    if (filtroRealizadas) {
+        return notas.filter(nota => nota.realizada);
+    }
+    return notas;
+}
+
+// Función para filtrar por texto
+function filtrarPorTexto(notas, texto) {
+    if (texto) {
+        return notas.filter(nota => 
+            nota.titulo.toLowerCase().includes(texto.toLowerCase()) ||
+            nota.texto.toLowerCase().includes(texto.toLowerCase())
+        );
+    }
+    return notas;
+}
+
+// Función para aplicar los filtros
+function aplicarFiltros() {
+    let texto = document.getElementById('buscarTexto').value;
+    let notasFiltradas = filtrarPorTexto(notas, texto);
+    notasFiltradas = filtrarPorRealizadas(notasFiltradas);
+    pintarNotas(notasFiltradas);
 }
 
 // Pintar las notas iniciales
-pintarNotas();
+aplicarFiltros();

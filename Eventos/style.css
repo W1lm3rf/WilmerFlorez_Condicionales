@@ -161,6 +161,13 @@ section{
 }
 
 
+#filtros{
+    height: 50px;
+    align-content: center;
+
+}
+
+
 
 
 
@@ -192,6 +199,21 @@ section{
 
 .card:hover{
     border:2px solid rgb(0, 33, 91);
+}
+
+.card input{
+    display: flex;
+    align-self: baseline;
+}
+
+.card label{
+    display: flex;
+    font-size: 12px;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: row;
 }
 
 .card h4{
